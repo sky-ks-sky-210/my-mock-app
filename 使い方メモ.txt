@@ -1,0 +1,5 @@
+□ローカルでおためし
+npm run dev
+
+□デプロイ
+npm run deploy
