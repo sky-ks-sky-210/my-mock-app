@@ -77,3 +77,39 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav li {
+  display: inline;
+  margin-right: 10px;
+}
+
+button {
+  margin: 5px;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.theme-page {
+  padding: 20px;
+}
+
+.home-page {
+  padding: 20px;
+}
