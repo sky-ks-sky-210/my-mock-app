@@ -6,6 +6,7 @@ function App() {
     './assets/image1.png',
     './assets/image2.png',
     './assets/image3.png',
+    // './assets/image4.png', // 必要に応じて画像を追加
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,6 +20,10 @@ function App() {
   const prevImage = () => {
     setTransition(true);
     setCurrentIndex((currentIndex - 1 + images.length) % images.length);
+  };
+
+  const handleThumbnailClick = (index) => {
+    setCurrentIndex(index);
   };
 
   useEffect(() => {
@@ -54,6 +59,19 @@ function App() {
         <button className="slider-button right" onClick={nextImage}>
           &#10095;
         </button>
+      </div>
+
+      {/* サムネイル画像の表示エリア */}
+      <div className="thumbnail-container">
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`Thumbnail ${index + 1}`}
+            className={`thumbnail ${index === currentIndex ? 'active' : ''}`}
+            onClick={() => handleThumbnailClick(index)}
+          />
+        ))}
       </div>
     </div>
   );
