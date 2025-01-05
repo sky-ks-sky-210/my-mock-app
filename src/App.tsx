@@ -1,12 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  // 手元の画像ファイルパスをリスト化
   const images = [
     './assets/image1.png',
     './assets/image2.png',
-    './assets/image3.png', // 必要に応じてパスを追加
+    './assets/image3.png',
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,6 +17,12 @@ function App() {
   const prevImage = () => {
     setCurrentIndex((currentIndex - 1 + images.length) % images.length);
   };
+
+  // 一定時間ごとに画像を切り替える
+  useEffect(() => {
+    const interval = setInterval(nextImage, 3000); // 3秒ごとに切り替え
+    return () => clearInterval(interval); // クリーンアップ
+  }, [currentIndex]); // currentIndexを依存関係に追加
 
   return (
     <div className="App">
