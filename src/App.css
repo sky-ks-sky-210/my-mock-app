@@ -1,23 +1,28 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: white;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
+  background-image: url('./assets/background.jpg'); /* 背景画像を設定 */
+  background-size: cover; /* 背景画像を全面に表示 */
+  background-attachment: fixed; /* 背景を固定 */
+  background-position: center; /* 背景画像の位置を中央に設定 */
+  background-repeat: no-repeat; /* 背景画像を繰り返さない */
   box-sizing: border-box;
 }
 
 .App {
   text-align: center;
   width: 100%;
+  min-height: 100vh; /* コンテンツの高さが短い場合も背景を全体表示 */
 }
 
 h1 {
   color: black;
-  margin: 20px 0;
+  margin: 30px 0;
 }
 
 .image-slider {
