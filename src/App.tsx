@@ -9,34 +9,51 @@ function App() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [transition, setTransition] = useState(true); // アニメーション制御
 
   const nextImage = () => {
+    setTransition(true);
     setCurrentIndex((currentIndex + 1) % images.length);
   };
 
   const prevImage = () => {
+    setTransition(true);
     setCurrentIndex((currentIndex - 1 + images.length) % images.length);
   };
 
-  // 一定時間ごとに画像を切り替える
   useEffect(() => {
-    const interval = setInterval(nextImage, 3000); // 3秒ごとに切り替え
-    return () => clearInterval(interval); // クリーンアップ
-  }, [currentIndex]); // currentIndexを依存関係に追加
+    const interval = setInterval(() => {
+      nextImage();
+    }, 3000); // 3秒ごとに切り替え
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
   return (
     <div className="App">
-      <h1>画像表示アプリ</h1>
-      <div className="image-container">
-        <img
-          src={images[currentIndex]}
-          alt={`Image ${currentIndex + 1}`}
-          className="displayed-image"
-        />
-      </div>
-      <div className="controls">
-        <button onClick={prevImage}>前へ</button>
-        <button onClick={nextImage}>次へ</button>
+      <h1>とっぷぺーじ</h1>
+      <div className="image-slider">
+        <div
+          className={`image-container ${transition ? 'slide' : ''}`}
+          style={{
+            transform: `translateX(-${currentIndex * 100}%)`,
+            transition: transition ? 'transform 0.5s ease-in-out' : 'none',
+          }}
+        >
+          {images.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Image ${index + 1}`}
+              className="displayed-image"
+            />
+          ))}
+        </div>
+        <button className="slider-button left" onClick={prevImage}>
+          &#10094;
+        </button>
+        <button className="slider-button right" onClick={nextImage}>
+          &#10095;
+        </button>
       </div>
     </div>
   );
